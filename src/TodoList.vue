@@ -33,7 +33,7 @@ export default {
           isDone: false,
         },
         {
-          text: "ホウレンソウを1束買う",
+          text: "ホウレンソウを1束買うよ",
           isDone: false,
         },
         {
