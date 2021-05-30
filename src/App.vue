@@ -1,51 +1,32 @@
-```bash
 <template>
   <div id="app">
-    <div class="hello-world">
-      <img alt="Vue logo" src="./assets/logo.png" />
-      <div class="hello-world__message">
-        {{ message }}
-      </div>
+    <div id="nav">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link>
     </div>
-    <TodoList></TodoList>
-    <Counter v-bind:initialValue="1000"></Counter>
+    <router-view />
   </div>
 </template>
-
-<script>
-import TodoList from "@/components/TodoList.vue"
-import Counter from "@/components/Counter.vue"
-export default {
-  name: "App",
-  components: {
-    TodoList,
-    Counter,
-  },
-  data: function () {
-    return {
-      message: "WebExpert Course Vue Template",
-    }
-  },
-  methods: {},
-}
-</script>
 
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-</style>
-
-<style scoped>
-.hello-world {
-  margin-top: 60px;
   text-align: center;
-}
-
-.hello-world .hello-world__message {
   color: #2c3e50;
 }
+
+#nav {
+  padding: 30px;
+}
+
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+#nav a.router-link-exact-active {
+  color: #42b983;
+}
 </style>
-```
