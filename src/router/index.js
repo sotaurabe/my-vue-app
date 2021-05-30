@@ -1,6 +1,11 @@
 import Vue from "vue"
 import VueRouter from "vue-router"
 import Home from "../views/Home.vue"
+import AddBooks from "../views/addBooks.vue"
+import Science from "../views/Science.vue"
+import Fhysics from "../views/science/Fhysics.vue"
+import Chemistry from "../views/science/Chemistry.vue"
+import Biology from "../views/science/Biology.vue"
 
 Vue.use(VueRouter)
 
@@ -11,13 +16,29 @@ const routes = [
     component: Home,
   },
   {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue"),
+    path: "/addBooks",
+    name: "AddBooks",
+    component: AddBooks,
+  },
+  {
+    path: "/science",
+    name: "Science",
+    component: Science,
+  },
+  {
+    path: "/fhysics",
+    name: "Fhysics",
+    component: Fhysics,
+  },
+  {
+    path: "/chemistry",
+    name: "Chemistry",
+    component: Chemistry,
+  },
+  {
+    path: "/biology",
+    name: "Biology",
+    component: Biology,
   },
 ]
 
