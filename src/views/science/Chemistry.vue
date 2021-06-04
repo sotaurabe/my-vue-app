@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>ここは化学のページです</p>
+    <h1>化学</h1>
     <div>
       <router-link to="/addBooks">参考書を追加する</router-link>
       <router-view />
