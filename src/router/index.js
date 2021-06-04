@@ -3,9 +3,12 @@ import VueRouter from "vue-router"
 import Home from "../views/Home.vue"
 import AddBooks from "../views/addBooks.vue"
 import Science from "../views/Science.vue"
-import Fhysics from "../views/science/Fhysics.vue"
+import Physics from "../views/science/Physics.vue"
 import Chemistry from "../views/science/Chemistry.vue"
 import Biology from "../views/science/Biology.vue"
+
+import ReviewList from "../views/reviewlist.vue"
+import AddReview from "../views/addReviews.vue"
 
 Vue.use(VueRouter)
 
@@ -26,9 +29,9 @@ const routes = [
     component: Science,
   },
   {
-    path: "/fhysics",
-    name: "Fhysics",
-    component: Fhysics,
+    path: "/physics",
+    name: "Physics",
+    component: Physics,
   },
   {
     path: "/chemistry",
@@ -39,6 +42,17 @@ const routes = [
     path: "/biology",
     name: "Biology",
     component: Biology,
+  },
+  {
+    path: "/reviewList",
+    name: "ReviewList",
+    component: ReviewList,
+    //props: true,
+  },
+  {
+    path: "/addReview",
+    name: "AddReview",
+    component: AddReview,
   },
 ]
 
