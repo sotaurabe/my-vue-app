@@ -3,7 +3,7 @@
     <p>参考書の追加</p>
     <div id="selectSubject">
       <label
-        ><input type="radio" value="fhy" v-model="selectSubject" />物理</label
+        ><input type="radio" value="phy" v-model="selectSubject" />物理</label
       >
       <label
         ><input type="radio" value="che" v-model="selectSubject" />化学</label
@@ -36,9 +36,12 @@ export default {
       const book = {
         Name: this.bookName,
         Company: this.bookCompany,
+        Subject: this.selectSubject,
+        DifficultyAve: "",
+        FavoriteAve: "",
       }
 
-      if (this.selectSubject === "fhy") {
+      if (this.selectSubject === "phy") {
         firebase
           .firestore()
           .collection("phyBooks")

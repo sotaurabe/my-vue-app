@@ -4,10 +4,23 @@
       {{ japaName }}
       の参考書一覧
     </div>
-    <div v-for="book in Books" :key="book.id">
+    <div v-for="book in reverseBooks" :key="book.id">
       {{ book.Name }}
       {{ book.Company }}
-      <router-link :to="{ name: 'ReviewList', params: { bookName: book.Name } }"
+      難易度
+      {{ book.DifficultyAve }}
+      おすすめ度
+      {{ book.FavoriteAve }}
+      <router-link
+        :to="{
+          name: 'ReviewList',
+          params: {
+            bookName: book.Name,
+            bookCompany: book.Company,
+            bookId: book.id,
+            bookSubject: book.Subject,
+          },
+        }"
         >レビューを見る</router-link
       >
       <router-view />
@@ -35,7 +48,11 @@ export default {
   },
 
   methods: {},
-
+  computed: {
+    reverseBooks() {
+      return this.Books.slice().reverse()
+    },
+  },
   created() {
     firebase
       .firestore()

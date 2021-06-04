@@ -1,6 +1,6 @@
 import Vue from "vue"
 import VueRouter from "vue-router"
-import Home from "../views/Home.vue"
+//import Home from "../views/Home.vue"
 import AddBooks from "../views/addBooks.vue"
 import Science from "../views/Science.vue"
 import Physics from "../views/science/Physics.vue"
@@ -8,16 +8,15 @@ import Chemistry from "../views/science/Chemistry.vue"
 import Biology from "../views/science/Biology.vue"
 
 import ReviewList from "../views/reviewlist.vue"
-import AddReview from "../views/addReviews.vue"
 
 Vue.use(VueRouter)
 
 const routes = [
-  {
-    path: "/",
-    name: "Home",
-    component: Home,
-  },
+  // {
+  //   path: "/",
+  //   name: "Home",
+  //   component: Home,
+  // },
   {
     path: "/addBooks",
     name: "AddBooks",
@@ -48,11 +47,6 @@ const routes = [
     name: "ReviewList",
     component: ReviewList,
     //props: true,
-  },
-  {
-    path: "/addReview",
-    name: "AddReview",
-    component: AddReview,
   },
 ]
 
