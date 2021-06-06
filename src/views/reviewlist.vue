@@ -1,10 +1,27 @@
 <template>
   <div>
-    <router-view></router-view>
-    <div>{{ bookName }}</div>
-    <div>{{ bookCompany }}</div>
-    <div>難易度:☆{{ difficultyAve }}</div>
-    <div>おすすめ度:☆{{ favoriteAve }}</div>
+    <div class="book-info">
+      <!-- <router-view></router-view> -->
+      <h1>{{ bookName }}</h1>
+      <h3>{{ bookCompany }}</h3>
+      <div class="book-level">
+        <h3>
+          難易度
+          <div class="book-ave">
+            <img src="../assets/鉛筆の画像.png" height="20px" />{{
+              difficultyAve
+            }}
+          </div>
+        </h3>
+        <h3>
+          おすすめ度
+          <div class="book-ave">
+            <img src="../assets/星の画像.png" height="20px" />{{ favoriteAve }}
+          </div>
+        </h3>
+      </div>
+    </div>
+
     <div class="review-form">
       <h2>レビューを書く</h2>
       <div class="input-difficulty">
@@ -56,14 +73,34 @@
     </div>
     <div>
       <h2>レビューを見る</h2>
-      <div v-for="review in reviews" :key="review.id">
-        <div class="review-box">
-          <p>難易度</p>
-          {{ review.difficulty }}
-          <p>おすすめ度</p>
-          {{ review.favorite }}
-          <p>レビュー</p>
-          {{ review.text }}
+      <div class="reviewlist-box">
+        <div v-for="review in reviews" :key="review.id">
+          <div class="review-box">
+            <div class="review-ave-box">
+              <div>
+                <p>難易度</p>
+                <div class="review-ave">
+                  <img src="../assets/鉛筆の画像.png" height="20px" />{{
+                    review.difficulty
+                  }}
+                </div>
+              </div>
+              <div>
+                <p>おすすめ度</p>
+                <div class="review-ave">
+                  <img src="../assets/星の画像.png" height="20px" />{{
+                    review.favorite
+                  }}
+                </div>
+              </div>
+            </div>
+            <div class="reviewtext-box">
+              <p>レビュー</p>
+              <div class="review-text">
+                {{ review.text }}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -155,18 +192,55 @@ export default {
           })
       })
   },
-  // computed: {
-  //   Updata: function () {
-  //     firebase
-  //       .firestore()
-  //       .collection(this.bookSubject + "Books")
-  //       .doc(this.bookId)
-  //       .set({
-  //         Name: this.bookName,
-  //         Company: this.bookCompany,
-  //         DifficultyAve: this.difficultyAve,
-  //       })
-  //   },
-  // },
 }
 </script>
+<style scoped>
+.book-info {
+  text-align: center;
+}
+.book-level {
+  width: 50%;
+  text-align: center;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.book-ave {
+  font-size: 30px;
+}
+
+.reviewlist-box {
+  width: 60%;
+  margin: 0 auto;
+  background-color: rgba(65, 105, 225, 0.5);
+  padding-top: 30px;
+  padding-bottom: 10px;
+}
+.review-box {
+  background-color: white;
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.review-ave-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.review-ave {
+  font-size: 25px;
+  font-weight: bold;
+}
+.reviewtext-box {
+  width: 90%;
+  margin: 0 auto;
+}
+.review-text {
+  margin-bottom: 15px;
+  background-color: #cef6f5;
+}
+</style>
