@@ -22,54 +22,56 @@
       </div>
     </div>
 
-    <div class="review-form">
+    <div>
       <h2>レビューを書く</h2>
-      <div class="input-difficulty">
-        <p>難易度</p>
-        <label
-          ><input type="radio" value="1" v-model="selectDifficulty" />1</label
-        >
-        <label
-          ><input type="radio" value="2" v-model="selectDifficulty" />2</label
-        >
-        <label
-          ><input type="radio" value="3" v-model="selectDifficulty" />3</label
-        >
-        <label
-          ><input type="radio" value="4" v-model="selectDifficulty" />4</label
-        >
-        <label
-          ><input type="radio" value="5" v-model="selectDifficulty" />5</label
-        >
+      <div class="review-form">
+        <div class="input-difficulty">
+          <p>難易度</p>
+          <label
+            ><input type="radio" value="1" v-model="selectDifficulty" />1</label
+          >
+          <label
+            ><input type="radio" value="2" v-model="selectDifficulty" />2</label
+          >
+          <label
+            ><input type="radio" value="3" v-model="selectDifficulty" />3</label
+          >
+          <label
+            ><input type="radio" value="4" v-model="selectDifficulty" />4</label
+          >
+          <label
+            ><input type="radio" value="5" v-model="selectDifficulty" />5</label
+          >
+        </div>
+        <div class="input-favorite">
+          <p>おすすめ度</p>
+          <label
+            ><input type="radio" value="1" v-model="selectFavorite" />1</label
+          >
+          <label
+            ><input type="radio" value="2" v-model="selectFavorite" />2</label
+          >
+          <label
+            ><input type="radio" value="3" v-model="selectFavorite" />3</label
+          >
+          <label
+            ><input type="radio" value="4" v-model="selectFavorite" />4</label
+          >
+          <label
+            ><input type="radio" value="5" v-model="selectFavorite" />5</label
+          >
+        </div>
+        <div class="input-text">
+          <p>あなたのレビュー</p>
+          <textarea
+            class="input-textarea"
+            v-model="inputText"
+            placeholder="とても分かりやすいです"
+            maxlength="140"
+          ></textarea>
+        </div>
+        <button class="input-button" v-on:click="postReview">投稿</button>
       </div>
-      <div class="input-favorite">
-        <p>おすすめ度</p>
-        <label
-          ><input type="radio" value="1" v-model="selectFavorite" />1</label
-        >
-        <label
-          ><input type="radio" value="2" v-model="selectFavorite" />2</label
-        >
-        <label
-          ><input type="radio" value="3" v-model="selectFavorite" />3</label
-        >
-        <label
-          ><input type="radio" value="4" v-model="selectFavorite" />4</label
-        >
-        <label
-          ><input type="radio" value="5" v-model="selectFavorite" />5</label
-        >
-      </div>
-      <div class="input-text">
-        <p>あなたのレビュー</p>
-        <textarea
-          class="input-textarea"
-          v-model="inputText"
-          placeholder="とても分かりやすいです"
-          maxlength="140"
-        ></textarea>
-      </div>
-      <button class="input-button" v-on:click="postReview">投稿</button>
     </div>
     <div>
       <h2>レビューを見る</h2>
@@ -135,20 +137,27 @@ export default {
         favorite: this.selectFavorite,
         text: this.inputText,
       }
-
-      firebase
-        .firestore()
-        .collection(this.reviewCollection)
-        .add(review)
-        .then((ref) => {
-          this.reviews.push({
-            id: ref.id,
-            ...review,
+      if (
+        this.selectDifficult === "" ||
+        this.selectFavorite === "" ||
+        this.inputText === ""
+      ) {
+        alert("全ての項目を入力して下さい")
+      } else {
+        firebase
+          .firestore()
+          .collection(this.reviewCollection)
+          .add(review)
+          .then((ref) => {
+            this.reviews.push({
+              id: ref.id,
+              ...review,
+            })
+            this.selectDifficulty = ""
+            this.selectFavorite = ""
+            this.inputText = ""
           })
-          this.selectDifficulty = ""
-          this.selectFavorite = ""
-          this.inputText = ""
-        })
+      }
     },
   },
   created() {
@@ -198,6 +207,9 @@ export default {
 .book-info {
   text-align: center;
 }
+h2 {
+  text-align: center;
+}
 .book-level {
   width: 50%;
   text-align: center;
@@ -209,7 +221,16 @@ export default {
 .book-ave {
   font-size: 30px;
 }
-
+.review-form {
+  width: 60%;
+  margin: 0 auto;
+  padding-bottom: 20px;
+  background-color: rgba(65, 105, 225, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
 .reviewlist-box {
   width: 60%;
   margin: 0 auto;
